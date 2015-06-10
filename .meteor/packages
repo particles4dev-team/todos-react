@@ -19,9 +19,9 @@ facts
 alanning:roles
 mrt:nprogress
 momentjs:moment
-meteorhacks:flow-router
 meteorhacks:ssr
+meteorhacks:flow-router
 
 particle4dev:debugx
 particle4dev:sass
-react
+reactjs:react
