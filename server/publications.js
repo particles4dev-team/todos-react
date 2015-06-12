@@ -83,3 +83,13 @@ Meteor.publish("delay", function(){
     Fiber.yield();
     this.ready();
 });
+
+Meteor.publish("loadTodos", function(){
+    var cursor;
+    self = this;
+    // userId = self.userId;
+    // if(userId){
+        cursor = TodoListsCollection.find({userId: "admin"},{sort: {updatedAt: -1}});
+    // }
+    _publishCursor(cursor, self, {});
+});

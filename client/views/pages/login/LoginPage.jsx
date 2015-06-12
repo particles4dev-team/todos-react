@@ -21,10 +21,10 @@ Login = ReactMeteor.createClass({
                     backgroundColor: "transparent",
                     padding: "0 20px"
                 }}>
-                    <a className="waves-effect waves-light btn blue darken-4" style={{width: "100%", marginBottom: "20px"}}>
+                    <a className="waves-effect waves-light btn-large blue darken-4" style={{width: "100%", marginBottom: "20px"}}>
                         FaceBook
                     </a>
-                    <a className="waves-effect waves-light btn light-blue darken-1" style={{width: "100%",}}>
+                    <a className="waves-effect waves-light btn-large light-blue darken-1" style={{width: "100%",}}>
                         Twitter
                     </a>
                 </footer>

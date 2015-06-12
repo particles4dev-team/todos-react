@@ -170,4 +170,8 @@
     line-height: 40px !important;
 }
 
+input[type="checkbox"]:checked + label + span {
+  text-decoration: line-through;
+}
+
 
