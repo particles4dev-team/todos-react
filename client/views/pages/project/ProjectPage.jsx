@@ -101,8 +101,35 @@ var TodoLists = ReactMeteor.createClass({
             }
         });
     },
-    openModal: function() {
-        $('#modal'+this.props.idTodo).openModal({
+    handleUpdateTodo: function(evt) {
+        evt.preventDefault();
+        var self = this;
+        var todo = React.findDOMNode(this.refs.todo).value.trim();
+        if(!todo) {
+                return;
+        }
+        Meteor.call('updateTodo', {idTodo: this.props.idTodo, todo: todo}, function(err, res){
+            if(err){
+                console.log(err)
+            }
+            else{
+                console.log(res);
+                $("#updateTodo"+self.props.idTodo).closeModal({
+                    out_duration: 500, // Transition out duration
+                });
+            }
+        });
+        return;
+    },
+    openModalCloseTodo: function() {
+        $('#closeTodo'+this.props.idTodo).openModal({
+            dismissible: false, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 500, // Transition in duration
+        });
+    },
+    openModalUpdateTodo: function() {
+        $('#updateTodo'+this.props.idTodo).openModal({
             dismissible: false, // Modal can be dismissed by clicking outside of the modal
             opacity: .5, // Opacity of modal background
             in_duration: 500, // Transition in duration
@@ -121,18 +148,36 @@ var TodoLists = ReactMeteor.createClass({
                     fontSize: "24px"
                 }}>
                     <a className="dropdown-button right" data-activates={"dropdown"+this.props.idTodo}><i className="mdi-navigation-more-vert"></i></a>
-                </div>
-                <ul id={"dropdown"+this.props.idTodo} className="dropdown-content">
-                    <li className="modal-trigger" onClick={this.openModal}><a >Delete</a></li>
-                    <li className="divider"></li>
-                    <li><a >Archive</a></li>
-                </ul>
-                <div id={"modal"+this.props.idTodo} className="modal">
+                    <ul id={"dropdown"+this.props.idTodo} className="dropdown-content">
+                        <li className="modal-trigger" onClick={this.openModalCloseTodo}><a >Delete</a></li>
+                        <li className="divider"></li>
+                        <li className="modal-trigger" onClick={this.openModalUpdateTodo}><a >Archive</a></li>
+                    </ul>
+                </div>                
+                <div id={"closeTodo"+this.props.idTodo} className="modal">
                     <div className="modal-content" style={{padding: "10px"}}>
                         <h5>Ban co muon xoa todo nay hay khong?</h5>
                     </div>
                     <div className="modal-footer">
                         <a className="waves-effect modal-close waves-green btn-flat" style={{color: "green", padding: "0 1rem"}} onClick={this.handleCloseTodo}>
+                            <i className="mdi-action-done" style={{fontSize: "25px"}}></i>
+                        </a>
+                        <a className=" modal-action modal-close waves-effect waves-green btn-flat" style={{color: "red", padding: "0 1rem"}}>
+                            <i className="mdi-content-clear" style={{fontSize: "25px"}}></i>
+                        </a>
+                    </div>
+                </div>
+                <div id={"updateTodo"+this.props.idTodo} className="modal bottom-sheet">
+                    <div className="modal-content" style={{padding: "10px"}}>
+                        <form>
+                            <div className="input-field">
+                                <textarea id="textarea2" className="materialize-textarea" ref="todo">{this.props.todo}</textarea>
+                                <label for="textarea2"></label>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="modal-footer">
+                        <a className="waves-effect waves-green btn-flat" style={{color: "green", padding: "0 1rem"}} onClick={this.handleUpdateTodo}>
                             <i className="mdi-action-done" style={{fontSize: "25px"}}></i>
                         </a>
                         <a className=" modal-action modal-close waves-effect waves-green btn-flat" style={{color: "red", padding: "0 1rem"}}>
