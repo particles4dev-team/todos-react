@@ -17,7 +17,7 @@ Project = ReactMeteor.createClass({
     },
     openModal: function() {
         $('#modal1').openModal({
-            dismissible: false, // Modal can be dismissed by clicking outside of the modal
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
             opacity: .5, // Opacity of modal background
             in_duration: 500, // Transition in duration
         });
@@ -45,17 +45,17 @@ Project = ReactMeteor.createClass({
     },
     render: function() {
         return (
-            <div className="container" style={{padding: "0"}}>
-                <div className="header">
-                    <h4>Todo Lists</h4>
-                    <p style={{marginBottom: "30px"}}>Add, edit and manage your Todo Lists</p>
+            <div id="container" className="container" style={{padding: "0px", marginBottom: "80px", fontFamily: "Shadows Into Light"}}>
+                <div className="header" style={{padding: "25px 0px"}}>
+                    <h4 style={{margin: "0"}}>Todo Lists</h4>
+                    <p style={{margin: "0px"}}>Add, edit and manage your Todo Lists</p>
                 </div>
                 <div className="divider"></div>
-                <div className="body">
-                    <a className="btn-floating btn-large waves-effect waves-light modal-trigger red right" onClick={this.openModal} style={{
+                <div className="body" style={{minHeight: "490px"}}>
+                    <a className="btn-floating btn-large waves-effect waves-light modal-trigger white right" onClick={this.openModal} style={{
                         top: "-30px"
                     }}>
-                        <i className="mdi-content-add"></i>
+                        <i className="mdi-content-add" style={{color: "#ff9a07"}}></i>
                     </a>
                     <div className="row" style={{height: "40px"}}>
                     </div>
@@ -66,8 +66,8 @@ Project = ReactMeteor.createClass({
                     <div className="modal-content" style={{padding: "10px"}}>
                         <form>
                             <div className="input-field">
-                                <textarea id="textarea1" className="materialize-textarea" ref="todo"></textarea>
-                                <label for="textarea1">Textarea</label>
+                                <textarea id="textarea1" className="materialize-textarea" ref="todo" style={{color: "#26a69a"}}></textarea>
+                                <label for="textarea1">What you want to do...</label>
                             </div>
                         </form>
                     </div>
@@ -123,14 +123,14 @@ var TodoLists = ReactMeteor.createClass({
     },
     openModalCloseTodo: function() {
         $('#closeTodo'+this.props.idTodo).openModal({
-            dismissible: false, // Modal can be dismissed by clicking outside of the modal
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
             opacity: .5, // Opacity of modal background
             in_duration: 500, // Transition in duration
         });
     },
     openModalUpdateTodo: function() {
         $('#updateTodo'+this.props.idTodo).openModal({
-            dismissible: false, // Modal can be dismissed by clicking outside of the modal
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
             opacity: .5, // Opacity of modal background
             in_duration: 500, // Transition in duration
         });
@@ -138,16 +138,19 @@ var TodoLists = ReactMeteor.createClass({
     render: function(){
         return (
             <div className="row">
-                <div className="col s10">
+                <div className="col s10" style={{
+                    position: "relative",
+                    paddingLeft: "40px",
+                }}>
                     <input type="checkbox" id={this.props.idTodo} />
-                    <label htmlFor={this.props.idTodo} style={{display: "inline", fontSize: "1.3rem"}}></label>
-                    <span>{this.props.todo}</span>
+                    <label htmlFor={this.props.idTodo} style={{display: "inline", fontSize: "1.3rem", position: "absolute", left: "10px"}}></label>
+                    <span style={{wordWrap: "break-word", fontSize: "18px", lineHeight: "18px"}}>{this.props.todo}</span>
                 </div>
                 <div className="col s2" style={{
                     lineHeight: "1",
                     fontSize: "24px"
                 }}>
-                    <a className="dropdown-button right" data-activates={"dropdown"+this.props.idTodo}><i className="mdi-navigation-more-vert"></i></a>
+                    <a className="dropdown-button right" data-activates={"dropdown"+this.props.idTodo}><i className="mdi-navigation-more-vert" style={{color: "#fff"}}></i></a>
                     <ul id={"dropdown"+this.props.idTodo} className="dropdown-content">
                         <li className="modal-trigger" onClick={this.openModalCloseTodo}><a >Delete</a></li>
                         <li className="divider"></li>
@@ -155,8 +158,8 @@ var TodoLists = ReactMeteor.createClass({
                     </ul>
                 </div>                
                 <div id={"closeTodo"+this.props.idTodo} className="modal">
-                    <div className="modal-content" style={{padding: "10px"}}>
-                        <h5>Ban co muon xoa todo nay hay khong?</h5>
+                    <div className="modal-content" style={{padding: "10px", color:"#26a69a"}}>
+                        <h5>Are you sure you want to delete this todo?</h5>
                     </div>
                     <div className="modal-footer">
                         <a className="waves-effect modal-close waves-green btn-flat" style={{color: "green", padding: "0 1rem"}} onClick={this.handleCloseTodo}>
@@ -168,10 +171,10 @@ var TodoLists = ReactMeteor.createClass({
                     </div>
                 </div>
                 <div id={"updateTodo"+this.props.idTodo} className="modal bottom-sheet">
-                    <div className="modal-content" style={{padding: "10px"}}>
+                    <div className="modal-content" style={{padding: "10px", color:"#26a69a"}}>
                         <form>
                             <div className="input-field">
-                                <textarea id="textarea2" className="materialize-textarea" ref="todo">{this.props.todo}</textarea>
+                                <textarea id="textarea2" className="materialize-textarea" ref="todo" style={{color: "#26a69a"}}>{this.props.todo}</textarea>
                                 <label for="textarea2"></label>
                             </div>
                         </form>

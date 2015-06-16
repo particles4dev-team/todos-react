@@ -5141,12 +5141,20 @@ nav {
   src: url("/fonts/roboto/Roboto-Bold.woff2") format("woff2"), url("/fonts/roboto/Roboto-Bold.woff") format("woff"), url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");
   font-weight: 700; }
 
+/* latin */
+@font-face {
+  font-family: 'Shadows Into Light';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/ShadowsIntoLight/ShadowsIntoLight.woff2") format('woff2'), url("/fonts/ShadowsIntoLight/ShadowsIntoLight.ttf") format("truetype");  
+}
+
 a {
   text-decoration: none; }
 
 html {
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  /*font-family: "Roboto", sans-serif;*/
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87); }
   @media only screen and (min-width: 0) {
