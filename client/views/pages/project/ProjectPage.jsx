@@ -30,14 +30,14 @@ Project = React.createClass({
         if(!todo) {
             return;
         }
+        $('#modal1').closeModal({
+            out_duration: 500, // Transition out duration
+        });
         Meteor.call('insertNewTodo', {todo: todo, timeTodo: new Date()}, function(err, res){
             console.log(err, res);
             if(err){}
             else {
                 React.findDOMNode(self.refs.todo).value = '';
-                $('#modal1').closeModal({
-                    out_duration: 500, // Transition out duration
-                });
             }
         });
         return;

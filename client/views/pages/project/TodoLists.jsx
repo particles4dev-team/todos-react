@@ -43,6 +43,13 @@ TodoLists = React.createClass({
         });
     },
     render: function(){
+        var color = null;
+        if(this.props.isSimulation){
+          color = 'red';
+        }
+        else {
+          color = 'green';
+        }
         return (
             <div className="row">
                 <div className="col s10" style={{
@@ -51,7 +58,7 @@ TodoLists = React.createClass({
                 }}>
                     <input type="checkbox" id={this.props.idTodo} />
                     <label htmlFor={this.props.idTodo} style={{display: "inline", fontSize: "1.3rem", position: "absolute", left: "10px"}}></label>
-                    <span style={{wordWrap: "break-word", fontSize: "18px", lineHeight: "18px"}}>{this.props.todo} {"" + this.props.isSimulation}</span>
+                    <span style={{color: color, wordWrap: "break-word", fontSize: "18px", lineHeight: "18px"}}>{this.props.todo}</span>
                 </div>
                 <div className="col s2" style={{
                     lineHeight: "1",
