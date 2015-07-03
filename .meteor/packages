@@ -19,7 +19,6 @@ facts
 alanning:roles
 mrt:nprogress
 momentjs:moment
-reactjs:react
 aldeed:autoform
 aldeed:collection2
 meteorhacks:ssr
@@ -28,3 +27,4 @@ meteorhacks:flow-router
 particle4dev:debugx
 particle4dev:sass
 
+react
