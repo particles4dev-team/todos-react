@@ -5,7 +5,8 @@ Project = React.createClass({
     mixins: [ReactMeteorData],
     getMeteorData () {
         return {
-            todos: TodoListsCollection.find({}, {sort: {updatedAt: -1}}).fetch()
+            todos: TodoListsCollection.find({isDone: false}, {sort: {updatedAt: -1}}).fetch(),
+            todos2: TodoListsCollection.find({isDone: true}, {sort: {updatedAt: -1}}).fetch()
         };
     },
     renderTodo (model) {
@@ -14,7 +15,8 @@ Project = React.createClass({
             model={model}
             idTodo={model._id}
             todo={model.todo}
-            isSimulation={model.isSimulation}/>;
+            isSimulation={model.isSimulation}
+            done={model.isDone}/>;
    },
     openModal () {
         $('#modal1').openModal({
@@ -60,6 +62,11 @@ Project = React.createClass({
                     </div>
                     <ReactCSSTransitionGroup transitionName="example">
                       {this.data.todos.map(this.renderTodo)}
+                    </ReactCSSTransitionGroup>
+                    <hr/>
+                    <p style={{margin: '0px'}}>Done</p>
+                    <ReactCSSTransitionGroup transitionName="example">
+                      {this.data.todos2.map(this.renderTodo)}
                     </ReactCSSTransitionGroup>
                 </div>
 

@@ -42,6 +42,11 @@ TodoLists = React.createClass({
             in_duration: 500, // Transition in duration
         });
     },
+    handleChange: function(e) {
+        Meteor.call('updateTodo2', this.props.idTodo, !this.props.done, function(err, res){
+            console.log(err, res);
+        });      
+    },
     render: function(){
         var color = null;
         if(this.props.isSimulation){
@@ -56,9 +61,9 @@ TodoLists = React.createClass({
                     position: "relative",
                     paddingLeft: "40px",
                 }}>
-                    <input type="checkbox" id={this.props.idTodo} />
+                    <input type="checkbox" id={this.props.idTodo} checked={this.props.done} onChange={this.handleChange}/>
                     <label htmlFor={this.props.idTodo} style={{display: "inline", fontSize: "1.3rem", position: "absolute", left: "10px"}}></label>
-                    <span style={{color: color, wordWrap: "break-word", fontSize: "18px", lineHeight: "18px"}}>{this.props.todo}</span>
+                    <span style={{color: color, wordWrap: "break-word", fontSize: "18px", lineHeight: "18px"}}>{this.props.todo} {this.props.done}</span>
                 </div>
                 <div className="col s2" style={{
                     lineHeight: "1",

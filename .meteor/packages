@@ -15,6 +15,7 @@ fastclick
 http
 launch-screen
 facts
+react
 
 alanning:roles
 mrt:nprogress
@@ -26,5 +27,3 @@ meteorhacks:flow-router
 
 particle4dev:debugx
 particle4dev:sass
-
-react
